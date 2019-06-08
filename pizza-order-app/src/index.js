@@ -7,16 +7,20 @@ import "primereact/resources/themes/nova-light/theme.css";
 import "primereact/resources/primereact.min.css";
 import "primeicons/primeicons.css";
 import "primeflex/primeflex.css";
-import { Route, Link, BrowserRouter as Router } from "react-router-dom";
+import { Route, BrowserRouter as Router } from "react-router-dom";
 import NewOrder from "./components/NewOrder";
+import Navigation from "./components/Navigation";
 
 const routing = (
-    <Router>
-        <div>
-            <Route exact path="/" component={App} />
-            <Route path="/NewOrder" component={NewOrder} />
-        </div>
-    </Router>
+    <>
+        <Router>
+            <Navigation />
+            <div>
+                <Route exact path="/" component={App} />
+                <Route path="/NewOrder" component={NewOrder} />
+            </div>
+        </Router>
+    </>
 );
 
 ReactDOM.render(routing, document.getElementById("root"));

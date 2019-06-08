@@ -28,10 +28,8 @@ const OrderList = () => {
                     onPage={e => setFirst(e.first)}
                     itemTemplate={template}
                     layout="grid"
+                    style={{ margin: "3em" }}
                 />
-                {orders.map(x => (
-                    <label key={x.orderId}>{x.name}</label>
-                ))}
             </>
         )
     );
