@@ -1,0 +1,18 @@
+[
+	{
+		"Size": "Small",
+		"Price": 7.99
+	},
+	{
+		"Size": "Medium",
+		"Price": 8.99
+	},
+	{
+		"Size": "Large",
+		"Price": 9.99
+	},
+	{
+		"Size": "Super",
+		"Price": 12.99
+	}
+]

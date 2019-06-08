@@ -1,0 +1,30 @@
+[
+    {
+        "Name": "Pepperoni",
+        "Price": 0.00
+    },
+    {
+        "Name": "Cheese",
+        "Price": 0.00
+    },
+    {
+        "Name": "Extra Cheese",
+        "Price": 1.00
+    },
+    {
+        "Name": "Mushrooms",
+        "Price": 1.00
+    },
+    {
+        "Name": "Bacon",
+        "Price": 1.00
+    },
+    {
+        "Name": "Onions",
+        "Price": 0.00
+    },
+    {
+        "Name": "Peppers",
+        "Price": 0.00
+    }
+]
