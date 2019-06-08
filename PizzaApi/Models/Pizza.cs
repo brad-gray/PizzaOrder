@@ -7,7 +7,7 @@ namespace PizzaApi.Models
     {
         public string Size { get; set; }
 
-        public double Price { get; set; }
+        public decimal Price { get; set; }
 
         public List<Topping> Toppings { get; set; }
     }

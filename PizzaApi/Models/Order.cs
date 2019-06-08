@@ -11,7 +11,7 @@ namespace PizzaApi.Models
 
         public List<Pizza> Pizzas { get; set; }
 
-        public double TotalCost { get; } //only return the sum of all pizza costs
+        public decimal TotalCost { get; set; } //only return the sum of all pizza costs
 
         public DateTime OrderDate { get; set; }
     }
