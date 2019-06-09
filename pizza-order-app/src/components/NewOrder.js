@@ -1,9 +1,12 @@
 import * as React from "react";
+import OrderForm from "./OrderForm";
 
 const NewOrder = () => {
     return (
-        <div>
-            <h1>New Order</h1>
+        <div className="App">
+            <div className="App-header">
+                <OrderForm />
+            </div>
         </div>
     );
 };
