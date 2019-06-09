@@ -1,5 +1,5 @@
 import * as React from "react";
-import OrderForm from "./OrderForm.jsx";
+import OrderForm from "./OrderForm";
 
 const NewOrder = () => {
     return <OrderForm />;

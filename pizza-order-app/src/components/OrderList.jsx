@@ -45,27 +45,25 @@ const OrderList = () => {
     console.log("render");
     return (
         orders && (
-            <>
-                <DataView
-                    value={orders}
-                    paginator={true}
-                    rows={10}
-                    first={first}
-                    onPage={e => setFirst(e.first)}
-                    itemTemplate={template}
-                    layout="grid"
-                    header={header({
-                        onSortChange: e => {
-                            setSortKey(e.value.field);
-                            setSortOrder(e.value.sortOrder);
-                        },
-                        sortKey
-                    })}
-                    sortOrder={sortOrder}
-                    sortField={sortKey}
-                    style={{ margin: "3em" }}
-                />
-            </>
+            <DataView
+                value={orders}
+                paginator={true}
+                rows={10}
+                first={first}
+                onPage={e => setFirst(e.first)}
+                itemTemplate={template}
+                layout="grid"
+                header={header({
+                    onSortChange: e => {
+                        setSortKey(e.value.field);
+                        setSortOrder(e.value.sortOrder);
+                    },
+                    sortKey
+                })}
+                sortOrder={sortOrder}
+                sortField={sortKey}
+                style={{ margin: "3em" }}
+            />
         )
     );
 };

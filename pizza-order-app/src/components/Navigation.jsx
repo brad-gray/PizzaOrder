@@ -22,7 +22,9 @@ const Navigation = props => {
     React.useEffect(() => {
         console.log(props);
         setItems(initalItems);
-        setActiveItem(initalItems.find(x => x.route === props.location.pathname));
+        setActiveItem(
+            initalItems.find(x => x.route === props.location.pathname)
+        );
         //eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
