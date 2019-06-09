@@ -1,6 +1,12 @@
 import * as React from "react";
 import PizzaList from "./PizzaList";
 
+const formatter = new Intl.NumberFormat("en-US", {
+    style: "currency",
+    currency: "USD",
+    minimumFractionDigits: 2
+});
+
 const OrderItem = ({ order }) => {
     return (
         order && (
@@ -16,7 +22,7 @@ const OrderItem = ({ order }) => {
                         <label>{order.name}</label>
                     </div>
                     <div className="p-col-5">
-                        <label>{order.totalCost}</label>
+                        <label>{formatter.format(order.totalCost)}</label>
                     </div>
                     {order.pizzas && <PizzaList pizzas={order.pizzas} />}
                 </div>
