@@ -1,11 +1,10 @@
 import * as React from "react";
-import { DataTable } from "primereact/datatable";
-import { Column } from "primereact/column";
 import toppingPrices from "../utils/toppingPrices";
 import basePizzaPrices from "../utils/basePizzaPrices";
 import { formatter } from "../utils/currencyHelper";
+import { Button } from "primereact/button";
 
-const PizzaList = ({ pizzas }) => {
+const PizzaList = ({ pizzas, editable, onDeleteClick }) => {
     const [mappedPizzas, setMappedPizzas] = React.useState(null);
     const [toppings, setToppings] = React.useState([]);
     const [basePrices, setBasePrices] = React.useState([]);
@@ -38,12 +37,45 @@ const PizzaList = ({ pizzas }) => {
         );
     }, [pizzas, toppings, basePrices]);
 
+    const className = editable ? "p-col-3" : "p-col-4";
     return (
-        <DataTable value={mappedPizzas}>
-            <Column field="size" header="Size" />
-            <Column field="price" header="Price" />
-            <Column field="toppings" header="Toppings" />
-        </DataTable>
+        <div className="p-grid" style={{ paddingBottom: "2em" }}>
+            {pizzas.length > 0 && (
+                <>
+                    <label style={{ fontWeight: "bold" }} className={className}>
+                        Size
+                    </label>
+                    <label style={{ fontWeight: "bold" }} className={className}>
+                        Price
+                    </label>
+                    <label style={{ fontWeight: "bold" }} className={className}>
+                        Toppings
+                    </label>
+                </>
+            )}
+            {editable && <div className={className} />}
+            <div className="p-col-12" />
+            {mappedPizzas &&
+                mappedPizzas.map((p, i) => {
+                    return (
+                        <React.Fragment key={p.number ? p.number : i}>
+                            <div className={className}>{p.size}</div>
+                            <div className={className}>{p.price}</div>
+                            <div className={className}>{p.toppings}</div>
+                            {editable && (
+                                <div className={className}>
+                                    <Button
+                                        className="p-button-danger"
+                                        label="Delete"
+                                        type="button"
+                                        onClick={() => onDeleteClick(p)}
+                                    />
+                                </div>
+                            )}
+                        </React.Fragment>
+                    );
+                })}
+        </div>
     );
 };
 

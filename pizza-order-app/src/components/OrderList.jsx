@@ -13,13 +13,16 @@ const header = ({ onSortChange, sortKey }) => {
 
     return (
         <div className="p-grid">
-            <div className="p-col-6" style={{ textAlign: "left" }}>
+            <div className="p-col-2" style={{ textAlign: "left" }}>
                 <Dropdown
                     options={sortOptions}
                     value={sortKey}
                     placeholder="Sort By"
                     onChange={onSortChange}
                 />
+            </div>
+            <div style={{ fontSize: "1.5em" }} className="p-col-8">
+                Order List
             </div>
         </div>
     );
@@ -42,7 +45,6 @@ const OrderList = () => {
 
     const template = order => <OrderItem order={order} />;
 
-    console.log("render");
     return (
         orders && (
             <DataView
@@ -62,7 +64,6 @@ const OrderList = () => {
                 })}
                 sortOrder={sortOrder}
                 sortField={sortKey}
-                style={{ margin: "3em" }}
             />
         )
     );

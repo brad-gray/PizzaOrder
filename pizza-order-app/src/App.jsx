@@ -3,37 +3,53 @@ import OrderList from "./components/OrderList";
 import { Route, BrowserRouter as Router } from "react-router-dom";
 import NewOrder from "./components/NewOrder";
 import Navigation from "./components/Navigation";
+import { ScrollPanel } from "primereact/scrollpanel";
 
 const App = () => (
     <Router>
-        <Navigation />
-        <div
-            style={{
-                padding: "0.5em",
-                backgroundColor: "#282c34",
-                position: "absolute",
-                height: "calc(100% - 2.5em)",
-                width: "100%"
-            }}
-        >
-            <h2
-                style={{
-                    color: "white",
-                    display: "flex",
-                    justifyContent: "center"
-                }}
-            >
-                <p>Teleflex Pizza Order App</p>
-            </h2>
+        <div style={{ overflowY: "hidden" }}>
             <div
                 style={{
-                    borderRadius: 4,
-                    backgroundColor: "white",
-                    padding: "1em"
+                    backgroundColor: "#282c34",
+                    position: "absolute",
+
+                    height: "100%",
+                    width: "100%",
+                    overflowY: "hidden"
                 }}
             >
-                <Route exact path="/" component={OrderList} />
-                <Route path="/NewOrder" component={NewOrder} />
+                <div
+                    style={{ backgroundColor: "white", padding: 0, margin: 0 }}
+                >
+                    <Navigation />
+                </div>
+                <h2
+                    style={{
+                        color: "white",
+                        display: "flex",
+                        justifyContent: "center"
+                    }}
+                >
+                    Teleflex Pizza Order App
+                </h2>
+                <ScrollPanel
+                    style={{
+                        height: "85%",
+                        width: "95%",
+                        margin: "auto"
+                    }}
+                >
+                    <div
+                        style={{
+                            borderRadius: 4,
+                            backgroundColor: "white",
+                            padding: "1em"
+                        }}
+                    >
+                        <Route exact path="/" component={OrderList} />
+                        <Route path="/NewOrder" component={NewOrder} />
+                    </div>
+                </ScrollPanel>
             </div>
         </div>
     </Router>

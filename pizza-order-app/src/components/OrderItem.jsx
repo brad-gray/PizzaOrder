@@ -9,8 +9,7 @@ const OrderItem = ({ order }) => {
                 <div
                     className="p-grid p-col-12"
                     style={{
-                        padding: "2em",
-                        borderBottom: "1px solid #d9d9d9"
+                        paddingBottom: "2em"
                     }}
                 >
                     <div className="p-col-2">
@@ -22,6 +21,14 @@ const OrderItem = ({ order }) => {
                     <div className="p-col-5">
                         <label>{formatter.format(order.totalCost)}</label>
                     </div>
+                </div>
+                <div
+                    className="p-col-12"
+                    style={{
+                        paddingBottom: "1em",
+                        borderBottom: "1px solid black"
+                    }}
+                >
                     {order.pizzas && <PizzaList pizzas={order.pizzas} />}
                 </div>
             </>

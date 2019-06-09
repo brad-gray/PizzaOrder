@@ -5,6 +5,7 @@ import SizeDropdown from "./SizeDropdown";
 import ToppingCheckboxes from "./ToppingCheckboxes";
 import { Message } from "primereact/message";
 import { formatter, sumPriceList } from "../utils/currencyHelper";
+import PizzaList from "./PizzaList";
 
 const OrderForm = () => {
     const [name, setName] = React.useState("");
@@ -16,15 +17,12 @@ const OrderForm = () => {
     const [sizeError, setSizeError] = React.useState("");
     const [currentPizzaNum, setCurrentPizzaNum] = React.useState(0);
 
-    const mapStateToPizza = e => {
+    const mapStateToPizza = () => {
         const pizza = {
             number: currentPizzaNum,
             size: size.name,
             price,
-            toppings: toppings
-                .filter(t => t.selected)
-                .map(t => t.name)
-                .join(", ")
+            toppings: toppings.filter(t => t.selected)
         };
         setCurrentPizzaNum(currentPizzaNum + 1);
         return pizza;
@@ -55,37 +53,15 @@ const OrderForm = () => {
                     )}`}
                 </label>
             </div>
-            <div className="p-grid" style={{ paddingBottom: "2em" }}>
-                <div className="p-col-3">Size</div>
-                <div className="p-col-3">Price</div>
-                <div className="p-col-3">Toppings</div>
-                <div className="p-col-3" />
-                <div
-                    className="p-col-12"
-                    style={{ borderBottom: "1px solid gray" }}
-                />
-                {orderPizzas.map(p => (
-                    <>
-                        <div className="p-col-3">{p.size}</div>
-                        <div className="p-col-3">{p.price}</div>
-                        <div className="p-col-3">{p.toppings}</div>
-                        <div className="p-col-3">
-                            <Button
-                                className="p-button-danger"
-                                label="Delete"
-                                type="button"
-                                onClick={() =>
-                                    setOrderPizzas(
-                                        orderPizzas.filter(
-                                            x => x.number !== p.number
-                                        )
-                                    )
-                                }
-                            />
-                        </div>
-                    </>
-                ))}
-            </div>
+            <PizzaList
+                editable={true}
+                pizzas={orderPizzas}
+                onDeleteClick={p =>
+                    setOrderPizzas(
+                        orderPizzas.filter(x => x.number !== p.number)
+                    )
+                }
+            />
             <div>
                 <label>Current Price: {formatter.format(price)}</label>
             </div>
@@ -119,7 +95,12 @@ const OrderForm = () => {
                     <Button label="Add Pizza" icon="pi pi-plus" type="submit" />
                 </div>
                 <div className="p-col-3">
-                    <Button label="Submit Order" icon="pi pi-dollar" />
+                    <Button
+                        label="Submit Order"
+                        icon="pi pi-dollar"
+                        type="button"
+                        onClick={submitOrder(name, orderPizzas, price)}
+                    />
                 </div>
             </div>
         </form>
