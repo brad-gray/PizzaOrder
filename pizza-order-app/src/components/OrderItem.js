@@ -1,11 +1,6 @@
 import * as React from "react";
 import PizzaList from "./PizzaList";
-
-const formatter = new Intl.NumberFormat("en-US", {
-    style: "currency",
-    currency: "USD",
-    minimumFractionDigits: 2
-});
+import { formatter } from "../utils/currencyHelper";
 
 const OrderItem = ({ order }) => {
     return (
@@ -13,7 +8,10 @@ const OrderItem = ({ order }) => {
             <>
                 <div
                     className="p-grid p-col-12"
-                    style={{ padding: "2em", borderBottom: "1px solid #d9d9d9" }}
+                    style={{
+                        padding: "2em",
+                        borderBottom: "1px solid #d9d9d9"
+                    }}
                 >
                     <div className="p-col-2">
                         <label>{order.orderId}</label>

@@ -1,14 +1,8 @@
 import * as React from "react";
-import OrderForm from "./OrderForm";
+import OrderForm from "./OrderForm.jsx";
 
 const NewOrder = () => {
-    return (
-        <div className="App">
-            <div className="App-header">
-                <OrderForm />
-            </div>
-        </div>
-    );
+    return <OrderForm />;
 };
 
 export default NewOrder;

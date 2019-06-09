@@ -3,12 +3,7 @@ import { DataTable } from "primereact/datatable";
 import { Column } from "primereact/column";
 import toppingPrices from "../utils/toppingPrices";
 import basePizzaPrices from "../utils/basePizzaPrices";
-
-const formatter = new Intl.NumberFormat("en-US", {
-    style: "currency",
-    currency: "USD",
-    minimumFractionDigits: 2
-});
+import { formatter } from "../utils/currencyHelper";
 
 const PizzaList = ({ pizzas }) => {
     const [mappedPizzas, setMappedPizzas] = React.useState(null);
@@ -27,7 +22,9 @@ const PizzaList = ({ pizzas }) => {
                     ...p,
                     price: formatter.format(
                         toppings
-                            .filter(t => p.toppings.find(pt => pt.name === t.name))
+                            .filter(t =>
+                                p.toppings.find(pt => pt.name === t.name)
+                            )
                             .map(t => t.price)
                             .reduce((p, c) => p + c, 0) +
                             basePrices

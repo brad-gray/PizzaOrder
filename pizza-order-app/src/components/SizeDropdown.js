@@ -7,7 +7,13 @@ const SizeDropdown = ({ onSizeChange, value }) => {
 
     React.useEffect(() => {
         basePizzaPrices().then(result =>
-            setSizes(result.map(x => ({ name: x.size, code: x.size })))
+            setSizes(
+                result.map(x => ({
+                    name: x.size,
+                    code: x.size,
+                    price: x.price
+                }))
+            )
         );
     }, []);
 
