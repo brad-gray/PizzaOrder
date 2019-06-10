@@ -24,6 +24,8 @@ The frontend is written in React with use of the following libraries:
 
 -   It is possible to add a pizza that contains no toppings resulting in a pizza that is just dough and sauce. This may be intended by the pizza business, but perhaps a requirement of at least one topping should be enforced.
 
+-   Related to the known issue below you may see UI elements flash on page load as the API calls are resolved. With a proper state management framework, I would add a progress spinner or something similar to address this.
+
 ##### Known issue:
 
 https://github.com/facebook/react/issues/14369
