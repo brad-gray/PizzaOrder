@@ -107,7 +107,11 @@ const OrderForm = props => {
                         type="button"
                         onClick={() => {
                             setFormError("");
-                            submitOrder(name, orderPizzas, price)
+                            submitOrder(
+                                name,
+                                orderPizzas,
+                                sumPriceList(orderPizzas)
+                            )
                                 .then(() => props.history.push("/"))
                                 .catch(error => setFormError(error.message));
                         }}
