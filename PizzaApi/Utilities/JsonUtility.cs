@@ -6,7 +6,7 @@ using PizzaApi.Models;
 
 namespace PizzaApi.Utilities
 {
-    public static class JsonDeserializer
+    public static class JsonUtility
     {
         public static List<ObjectType> ReadObjectCollectionFromJson<ObjectType>(string filePath)
         {
@@ -18,6 +18,14 @@ namespace PizzaApi.Utilities
             }
 
             return collection;
+        }
+
+        public static void WriteObjectCollectionToJson<ObjectType>(string filePath, List<ObjectType> data)
+        {
+            using (var sw = new StreamWriter(filePath, false))
+            {
+                sw.WriteLine(JsonConvert.SerializeObject(data));
+            }
         }
     }
 }
