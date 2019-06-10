@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Builder;
@@ -18,6 +19,20 @@ namespace PizzaApi
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
+
+            InitDatabase(configuration.GetSection("Paths"));
+        }
+
+        private void InitDatabase(IConfigurationSection config)
+        {
+
+            config.GetChildren().ToList().ForEach(x =>
+            {
+                var destPath = x.Value.Replace("StartingData", "Database");
+                if (File.Exists(destPath)) return;
+
+                File.Copy(x.Value, destPath);
+            });
         }
 
         public IConfiguration Configuration { get; }

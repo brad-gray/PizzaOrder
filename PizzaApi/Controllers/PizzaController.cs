@@ -12,13 +12,13 @@ namespace PizzaApi.Controllers
     [ApiController]
     public class PizzaController : ControllerBase
     {
-        private const string JSON_PATH = "StartingData\\Pizzas.json";
+        private const string JSON_PATH = "Database\\Pizzas.json";
 
         // GET api/values
         [HttpGet]
         public ActionResult<IEnumerable<Pizza>> Get()
         {
-            var collection = JsonDeserializer.ReadObjectCollectionFromJson<Pizza>(JSON_PATH);
+            var collection = JsonUtility.ReadObjectCollectionFromJson<Pizza>(JSON_PATH);
             return collection;
         }
 
@@ -26,7 +26,7 @@ namespace PizzaApi.Controllers
         [HttpGet("{id}")]
         public ActionResult<Pizza> Get(int id)
         {
-            var collection = JsonDeserializer.ReadObjectCollectionFromJson<Pizza>(JSON_PATH);
+            var collection = JsonUtility.ReadObjectCollectionFromJson<Pizza>(JSON_PATH);
             return collection[id];
         }
 

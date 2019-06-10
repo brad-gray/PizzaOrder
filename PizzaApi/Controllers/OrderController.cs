@@ -12,26 +12,35 @@ namespace PizzaApi.Controllers
     [ApiController]
     public class OrderController : ControllerBase
     {
-        private const string JSON_PATH = "StartingData\\Orders.json";
+        private const string JSON_PATH = "Database\\Orders.json";
+        //private List<Order> collection = JsonUtility.ReadObjectCollectionFromJson<Order>(JSON_PATH);
 
         // GET api/values
         [HttpGet]
         public ActionResult<IEnumerable<Order>> Get()
         {
-            var collection = JsonDeserializer.ReadObjectCollectionFromJson<Order>(JSON_PATH);
+            var collection = JsonUtility.ReadObjectCollectionFromJson<Order>(JSON_PATH);
             return collection;
         }
 
         // GET api/values/5
         [HttpGet("{id}")]
-        public ActionResult<string> Get(int id)
+        public ActionResult<Order> Get(int id)
         {
-            return "value";
+            //Not using any caching currently
+            var collection = JsonUtility.ReadObjectCollectionFromJson<Order>(JSON_PATH);
+            return collection.Find(x => x.OrderId == id) ?? null;
         }
 
         // POST api/values
         [HttpPost]
-        public void Post([FromBody] string value) { }
+        public void Post([FromBody] Order ord)
+        {
+            Console.WriteLine($"Name: {ord.Name} OrderId: {ord.OrderId}");
+            var collection = JsonUtility.ReadObjectCollectionFromJson<Order>(JSON_PATH);
+            collection.Add(ord);
+            JsonUtility.WriteObjectCollectionToJson(JSON_PATH, collection);
+        }
 
         // PUT api/values/5
         [HttpPut("{id}")]
