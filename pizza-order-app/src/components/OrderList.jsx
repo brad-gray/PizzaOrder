@@ -38,7 +38,6 @@ const OrderList = () => {
         (async () => {
             const response = await fetch("/api/order");
             const data = await response.json();
-            console.log(data);
             setOrders(data);
         })();
     }, []);
@@ -50,7 +49,7 @@ const OrderList = () => {
             <DataView
                 value={orders}
                 paginator={true}
-                rows={10}
+                rows={5}
                 first={first}
                 onPage={e => setFirst(e.first)}
                 itemTemplate={template}

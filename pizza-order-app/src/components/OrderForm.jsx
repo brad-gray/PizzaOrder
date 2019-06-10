@@ -6,8 +6,10 @@ import ToppingCheckboxes from "./ToppingCheckboxes";
 import { Message } from "primereact/message";
 import { formatter, sumPriceList } from "../utils/currencyHelper";
 import PizzaList from "./PizzaList";
+import { submitOrder } from "../utils/orderSubmitter";
+import { withRouter } from "react-router-dom";
 
-const OrderForm = () => {
+const OrderForm = props => {
     const [name, setName] = React.useState("");
     const [size, setSize] = React.useState({});
     const [price, setPrice] = React.useState(0);
@@ -15,6 +17,7 @@ const OrderForm = () => {
     const [orderPizzas, setOrderPizzas] = React.useState([]);
     const [toppings, setToppings] = React.useState([]);
     const [sizeError, setSizeError] = React.useState("");
+    const [formError, setFormError] = React.useState("");
     const [currentPizzaNum, setCurrentPizzaNum] = React.useState(0);
 
     const mapStateToPizza = () => {
@@ -31,6 +34,8 @@ const OrderForm = () => {
     const validateAddPizza = event => {
         event.preventDefault();
 
+        setFormError("");
+
         if (!size.name) {
             setSizeError("Size is required");
             return;
@@ -46,6 +51,7 @@ const OrderForm = () => {
 
     return (
         <form onSubmit={validateAddPizza}>
+            {formError && <Message severity="error" text={formError} />}
             <div style={{ paddingBottom: "1.5em" }}>
                 <label>
                     {`Total Price: ${formatter.format(
@@ -62,7 +68,7 @@ const OrderForm = () => {
                     )
                 }
             />
-            <div>
+            <div style={{ paddingBottom: "2em" }}>
                 <label>Current Price: {formatter.format(price)}</label>
             </div>
             <div style={{ paddingBottom: "1em" }}>
@@ -99,7 +105,12 @@ const OrderForm = () => {
                         label="Submit Order"
                         icon="pi pi-dollar"
                         type="button"
-                        onClick={submitOrder(name, orderPizzas, price)}
+                        onClick={() => {
+                            setFormError("");
+                            submitOrder(name, orderPizzas, price)
+                                .then(() => props.history.push("/"))
+                                .catch(error => setFormError(error.message));
+                        }}
                     />
                 </div>
             </div>
@@ -107,4 +118,4 @@ const OrderForm = () => {
     );
 };
 
-export default OrderForm;
+export default withRouter(OrderForm);

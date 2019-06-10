@@ -1,6 +1,7 @@
 import * as React from "react";
 import PizzaList from "./PizzaList";
 import { formatter } from "../utils/currencyHelper";
+import moment from "moment";
 
 const OrderItem = ({ order }) => {
     return (
@@ -12,14 +13,23 @@ const OrderItem = ({ order }) => {
                         paddingBottom: "2em"
                     }}
                 >
-                    <div className="p-col-2">
-                        <label>{order.orderId}</label>
+                    <div className="p-col-6">
+                        <label>{`Order Id: ${order.orderId}`}</label>
                     </div>
-                    <div className="p-col-5">
-                        <label>{order.name}</label>
+                    <div className="p-col-6">
+                        <label>{`Name: ${order.name}`}</label>
                     </div>
-                    <div className="p-col-5">
-                        <label>{formatter.format(order.totalCost)}</label>
+                    <div className="p-col-6">
+                        <label>{`Total Cost: ${formatter.format(
+                            order.totalCost
+                        )}`}</label>
+                    </div>
+                    <div className="p-col-6">
+                        <label>
+                            {`Order Time: ${moment(order.orderDate).format(
+                                "MM/DD/YYYY h:mm A"
+                            )}`}
+                        </label>
                     </div>
                 </div>
                 <div

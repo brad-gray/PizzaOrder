@@ -19,7 +19,11 @@ const App = () => (
                 }}
             >
                 <div
-                    style={{ backgroundColor: "white", padding: 0, margin: 0 }}
+                    style={{
+                        backgroundColor: "white",
+                        padding: 0,
+                        margin: 0
+                    }}
                 >
                     <Navigation />
                 </div>
@@ -47,7 +51,7 @@ const App = () => (
                         }}
                     >
                         <Route exact path="/" component={OrderList} />
-                        <Route path="/NewOrder" component={NewOrder} />
+                        <Route path="/NewOrder/" component={NewOrder} />
                     </div>
                 </ScrollPanel>
             </div>

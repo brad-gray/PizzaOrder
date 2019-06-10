@@ -2,11 +2,11 @@ import * as React from "react";
 import { TabMenu } from "primereact/tabmenu";
 import { withRouter } from "react-router-dom";
 
-const Navigation = props => {
+const Navigation = ({ location, history }) => {
     const [items, setItems] = React.useState(null);
     const [activeItem, setActiveItem] = React.useState();
 
-    const initalItems = [
+    const initialItems = [
         {
             label: "Order List",
             icon: "pi pi-list",
@@ -20,21 +20,20 @@ const Navigation = props => {
     ];
 
     React.useEffect(() => {
-        console.log(props);
-        setItems(initalItems);
-        setActiveItem(
-            initalItems.find(x => x.route === props.location.pathname)
+        setItems(initialItems);
+        setActiveItem(initialItems.find(i => i.route === location.pathname));
+        console.log(
+            "YOU SPIN ME RIGHT ROUND BABY RIGHT ROUND LIKE A RECORD BABY RIGHT ROUND ROUND ROUND"
         );
-        //eslint-disable-next-line react-hooks/exhaustive-deps
-    }, []);
+    }, [location]);
 
     return (
         <TabMenu
             model={items}
             activeItem={activeItem}
             onTabChange={e => {
+                history.push(e.value.route);
                 setActiveItem(e.value);
-                props.history.push(e.value.route);
             }}
         />
     );
