@@ -25,7 +25,10 @@ namespace PizzaApi
 
         private void InitDatabase(IConfigurationSection config)
         {
-
+            if (!Directory.Exists("./Database"))
+            {
+                Directory.CreateDirectory("./Database");
+            }
             config.GetChildren().ToList().ForEach(x =>
             {
                 var destPath = x.Value.Replace("StartingData", "Database");
