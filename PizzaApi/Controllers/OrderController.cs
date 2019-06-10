@@ -34,12 +34,17 @@ namespace PizzaApi.Controllers
 
         // POST api/values
         [HttpPost]
-        public void Post([FromBody] Order ord)
+        public ActionResult<Order> Post([FromBody] Order ord)
         {
+            if (String.IsNullOrEmpty(ord.Name)) return StatusCode(400, "Name is required");
+            if (ord.Pizzas.Count == 0) return StatusCode(400, "Order must contain one or more pizzas");
+
             Console.WriteLine($"Name: {ord.Name} OrderId: {ord.OrderId}");
             var collection = JsonUtility.ReadObjectCollectionFromJson<Order>(JSON_PATH);
+            ord.OrderId = collection.Select(order => order.OrderId).Max() + 1;
             collection.Add(ord);
             JsonUtility.WriteObjectCollectionToJson(JSON_PATH, collection);
+            return ord;
         }
 
         // PUT api/values/5

@@ -9,13 +9,16 @@
                 "Size": "Large",
                 "Toppings": [
                     {
-                        "Name": "Cheese"
+                        "Name": "Cheese",
+                        "Price": 0
                     },
                     {
-                        "Name": "Pepperoni"
+                        "Name": "Pepperoni",
+                        "Price": 0
                     },
                     {
-                        "Name": "Mushrooms"
+                        "Name": "Mushrooms",
+                        "Price": 1
                     }
                 ]
             }
@@ -31,7 +34,8 @@
                 "Size": "Small",
                 "Toppings": [
                     {
-                        "Name": "Cheese"
+                        "Name": "Cheese",
+                        "Price": 0
                     }
                 ]
             },
@@ -39,7 +43,8 @@
                 "Size": "Medium",
                 "Toppings": [
                     {
-                        "Name": "Cheese"
+                        "Name": "Cheese",
+                        "Price": 0
                     }
                 ]
             }
@@ -55,13 +60,16 @@
                 "Size": "Small",
                 "Toppings": [
                     {
-                        "Name": "Cheese"
+                        "Name": "Cheese",
+                        "Price": 0
                     },
                     {
-                        "Name": "Extra Cheese"
+                        "Name": "Extra Cheese",
+                        "Price": 1
                     },
                     {
-                        "Name": "Bacon"
+                        "Name": "Bacon",
+                        "Price": 1
                     }
                 ]
             },
@@ -69,13 +77,16 @@
                 "Size": "Small",
                 "Toppings": [
                     {
-                        "Name": "Cheese"
+                        "Name": "Cheese",
+                        "Price": 0
                     },
                     {
-                        "Name": "Onions"
+                        "Name": "Onions",
+                        "Price": 0
                     },
                     {
-                        "Name": "Peppers"
+                        "Name": "Peppers",
+                        "Price": 0
                     }
                 ]
             }
