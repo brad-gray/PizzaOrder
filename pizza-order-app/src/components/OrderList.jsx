@@ -49,6 +49,7 @@ const OrderList = () => {
             <DataView
                 value={orders}
                 paginator={true}
+                paginatorPosition="both"
                 rows={5}
                 first={first}
                 onPage={e => setFirst(e.first)}
